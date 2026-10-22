@@ -1,3 +1,5 @@
+using System.Reflection.Metadata.Ecma335;
+
 public class Reference
 {
     private string _book;
@@ -28,19 +30,6 @@ public class Reference
         GenRefString();
         _content = getContent;
         // and...
-    }
-
-    public Reference(string refString, string content)
-    {
-        string[] splitRefString = DecodeRefString(refString);
-
-        _book = splitRefString[0];
-        _chapter = splitRefString[1];
-        _verse = splitRefString[2];
-        if (splitRefString.Count() == 4) {_verseEnd = splitRefString[3];}
-        else {_verseEnd = "";}
-        GenRefString();
-        _content = content;
     }
     
     public Reference(string getBook, string getChapter, string getVerse, string getContent)
@@ -80,6 +69,10 @@ public class Reference
         }
         _refString = $"{_book}^{_chapter}^{verses}";
     }
+    public string GetRefString()
+    {
+        return _refString;
+    }
 
     private string[] DecodeRefString(string refString) // creativity compliance
     {
@@ -87,11 +80,11 @@ public class Reference
         return splitRefString;
     }
 
-    public string DisplayRefString(string refString)
+    public string DisplayRefString()
     {
-        string[] splitRefString = DecodeRefString(refString);
-        string verses;
+        string[] splitRefString = DecodeRefString(_refString);
         
+        string verses;
         if (splitRefString.Count() == 4) {verses = $"{splitRefString[2]}-{splitRefString[3]}";}
         else {verses = splitRefString[2];}
 
@@ -99,8 +92,8 @@ public class Reference
         return displayRef;
     }
 
-    private void RunScripture()
+    public string Contents()
     {
-        Scripture(this);
+        return _content;
     }
 }
