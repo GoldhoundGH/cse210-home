@@ -1,3 +1,8 @@
+// To exceed requirements, I coded the program to save and fetch journals from a specific folder on the C drive, which it will create if it does not already exist.
+
+// Also, my program checks if the file names submitted to save or fetch a file include ".txt" and appends it if they do not.
+
+
 using System;
 using System.IO;
 
