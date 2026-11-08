@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Learning05 World!");
+        TestClass bobTest = new TestClass();
+        Func<string> bob = bobTest.TestFunction;
+
+        string bobAnswer = bob();
     }
 }
